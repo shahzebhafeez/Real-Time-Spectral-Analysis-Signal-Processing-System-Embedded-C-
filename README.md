@@ -1,27 +1,38 @@
-Real-Time Spectral Analysis & Industrial Protocol Diagnostic System
-📌 Project Overview
-An advanced embedded instrumentation tool built on the ESP32 to analyze vibration signals and simulate industrial protocols in real-time. The system utilizes onboard DSP (512-point FFT) to convert 10kHz analog signals into frequency spectra with <14ms latency, streaming data via UART to a multi-threaded Python/Matplotlib Dashboard. It features a "Protocol Simulator" engine for I2C/SPI physical layer debugging and a hardware-interrupt driven control interface.
+# Real-Time Spectral Analysis & Industrial Protocol Diagnostic System
 
-🚀 Key Features
-Real-Time DSP: Performs onboard FFT to detect vibration frequencies, visualizing data in both Spectrum Mode (Frequency) and Oscilloscope Mode (Time-Domain).
+## 📌 Project Overview
+An advanced embedded instrumentation tool built on the **ESP32** to analyze vibration signals and simulate industrial protocols in real-time. The system utilizes onboard **DSP (512-point FFT)** to convert 10kHz analog signals into frequency spectra with **<14ms latency**, streaming data via **UART** to a multi-threaded **Python/Matplotlib Dashboard**. It features a "Protocol Simulator" engine for **I2C/SPI** physical layer debugging and a hardware-interrupt driven control interface.
 
-Embedded Control: Uses GPIO Interrupts (ISRs) for instant mode switching and implements a safety alarm that triggers if vibration energy exceeds thresholds.
+## 🚀 Key Features
+* **Real-Time DSP:** Performs onboard FFT to detect vibration frequencies, visualizing data in both **Spectrum Mode** (Frequency) and **Oscilloscope Mode** (Time-Domain).
+* **Embedded Control:** Uses **GPIO Interrupts (ISRs)** for instant mode switching and implements a safety alarm that triggers if vibration energy exceeds thresholds.
+* **Protocol Simulation:** Generates active traffic for **I2C** (NACK testing) and **SPI** (0xDEADBEEF payload) to verify timing and bus arbitration using a Logic Analyzer.
+* **Python Dashboard:** A robust, multi-threaded GUI that handles high-speed serial data (115200 baud) with dynamic auto-scaling and error handling.
 
-Protocol Simulation: Generates active traffic for I2C (NACK testing) and SPI (0xDEADBEEF payload) to verify timing and bus arbitration using a Logic Analyzer.
+## 🛠 Tech Stack
+* **Firmware:** C++ (ESP32), `arduinoFFT`, `Wire` (I2C), `SPI`, FreeRTOS.
+* **Software:** Python 3.10, `Matplotlib`, `PySerial`, `NumPy`.
 
-Python Dashboard: A robust, multi-threaded GUI that handles high-speed serial data (115200 baud) with dynamic auto-scaling and error handling.
+## 🔌 Pin Configuration
+| Component | Pin | Function |
+| :--- | :--- | :--- |
+| **Signal Input** | GPIO 36 | Analog In (ADC) |
+| **Signal Gen** | GPIO 25 | DAC Output (Loopback) |
+| **Mode Button** | GPIO 13 | ISR Input (Pull-down) |
+| **LEDs** | GPIO 12/14 | Status (Green) / Alarm (Red) |
+| **Protocols** | GPIO 21/22 | I2C SDA/SCL |
+| **Protocols** | GPIO 23/18/5 | SPI MOSI/CLK/CS |
 
-🛠 Tech Stack
-Firmware: C++ (ESP32), arduinoFFT, Wire (I2C), SPI, FreeRTOS.
+## 📊 Results
+* **<14ms** DSP processing time per frame (Verified via Logic Analyzer).
+* Successfully captured **I2C NACK** errors and **SPI 0xDEADBEEF** packets on physical lines.
+* Achieved **<1% error** in 50Hz fundamental frequency detection.
 
-Software: Python 3.10, Matplotlib, PySerial, NumPy.
+## 📸 Screenshots
+*(Add your screenshots here)*
 
-📊 Results
-<14ms DSP processing time per frame (Verified via Logic Analyzer).
-
-Successfully captured I2C NACK errors and SPI 0xDEADBEEF packets on physical lines.
-
-Achieved <1% error in 50Hz fundamental frequency detection.
+## 📝 License
+This project is open-source and available under the MIT License.
 
 ![Embedded_project](https://github.com/user-attachments/assets/8146e54c-4f28-45de-917e-00f4306a79ef)
 
