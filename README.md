@@ -28,9 +28,6 @@ An advanced embedded instrumentation tool built on the **ESP32** to analyze vibr
 * Successfully captured **I2C NACK** errors and **SPI 0xDEADBEEF** packets on physical lines.
 * Achieved **<1% error** in 50Hz fundamental frequency detection.
 
-## 📝 License
-This project is open-source and available under the MIT License.
-
 ![Embedded_project](https://github.com/user-attachments/assets/8146e54c-4f28-45de-917e-00f4306a79ef)
 
 https://github.com/user-attachments/assets/ed511292-e009-4b28-8a57-6a80bac361df
